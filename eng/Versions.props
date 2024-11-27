@@ -22,7 +22,7 @@
   <!-- Production Dependencies -->
   <PropertyGroup>
     <MicrosoftIORedistVersion>6.0.1</MicrosoftIORedistVersion>
-    <MicrosoftVisualStudioSolutionPersistenceVersion>1.0.9</MicrosoftVisualStudioSolutionPersistenceVersion>
+    <MicrosoftVisualStudioSolutionPersistenceVersion>1.0.23</MicrosoftVisualStudioSolutionPersistenceVersion>
     <SystemCollectionsImmutableVersion>8.0.0</SystemCollectionsImmutableVersion>
     <SystemConfigurationConfigurationManagerVersion>8.0.0</SystemConfigurationConfigurationManagerVersion>
     <SystemFormatsAsn1Version>8.0.1</SystemFormatsAsn1Version>
@@ -55,7 +55,7 @@
     <NuGetBuildTasksVersion>6.13.0-preview.1.71</NuGetBuildTasksVersion>
   </PropertyGroup>
   <PropertyGroup Condition="!$(TargetFramework.StartsWith('net4'))">
-    <BootstrapSdkVersion>9.0.200-preview.0.24523.19</BootstrapSdkVersion>
+    <BootstrapSdkVersion>9.0.200-preview.0.24576.26</BootstrapSdkVersion>
   </PropertyGroup>
   <Target Name="OverrideArcadeFileVersion" AfterTargets="_InitializeAssemblyVersion">
     <!-- See https://github.com/dotnet/arcade/issues/3386
