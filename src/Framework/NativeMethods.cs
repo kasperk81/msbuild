@@ -444,18 +444,10 @@ internal static class NativeMethods
     }
 
     /// <summary>
-    /// Cached value for IsUnixLike (this method is called frequently during evaluation).
-    /// </summary>
-    private static readonly bool s_isUnixLike = IsLinux || IsOSX || IsBSD || IsHaiku;
-
-    /// <summary>
     /// Gets a flag indicating if we are running under a Unix-like system (Mac, Linux, etc.)
     /// </summary>
     [UnsupportedOSPlatformGuard("windows")]
-    internal static bool IsUnixLike
-    {
-        get { return s_isUnixLike; }
-    }
+    internal static bool IsUnixLike => !IsWindows;
 
     /// <summary>
     /// Gets a flag indicating if we are running under Linux
@@ -477,18 +469,6 @@ internal static class NativeMethods
             return RuntimeInformation.IsOSPlatform(OSPlatform.Create("FREEBSD")) ||
                    RuntimeInformation.IsOSPlatform(OSPlatform.Create("NETBSD")) ||
                    RuntimeInformation.IsOSPlatform(OSPlatform.Create("OPENBSD"));
-        }
-    }
-
-    /// <summary>
-    /// Gets a flag indicating if we are running under Haiku
-    /// </summary>
-    [SupportedOSPlatformGuard("haiku")]
-    internal static bool IsHaiku
-    {
-        get
-        {
-            return RuntimeInformation.IsOSPlatform(OSPlatform.Create("HAIKU"));
         }
     }
 
@@ -556,11 +536,6 @@ internal static class NativeMethods
         return IsOSX ? "osx" : IsUnixLike ? "unix" : "windows";
     }
 
-    internal static bool OSUsesCaseSensitivePaths
-    {
-        get { return IsLinux; }
-    }
-
     /// <summary>
     /// Determines whether the file system is case sensitive by creating a test file.
     /// Copied from FileUtilities.GetIsFileSystemCaseSensitive() in Shared.
@@ -578,7 +553,7 @@ internal static class NativeMethods
         }
         catch
         {
-            return OSUsesCaseSensitivePaths;
+            return IsLinux;
         }
     });
 
